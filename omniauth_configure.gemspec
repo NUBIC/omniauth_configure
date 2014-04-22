@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "omniauth-nucats-membership/version"
+require "omniauth_configure/version"
 
 Gem::Specification.new do |s|
   s.name = %q{omniauth_configure}
-  s.version = OmniauthConfigure::VERSION
+  s.version = OmniAuthConfigure::VERSION
 
   s.authors = ['John Dzak']
   s.email = %q{j-dzak@northwestern.edu}
