@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module OmniAuthConfigure
   class Configuration < Struct.new(:app, :central)
     attr_reader :strategies

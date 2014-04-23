@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module OmniAuthConfigure::Rack
   def self.use_in(builder, configuration=nil, &block)
     effective_configuration = configuration || OmniAuthConfigure.configuration
