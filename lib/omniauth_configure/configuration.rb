@@ -1,7 +1,13 @@
 module OmniAuthConfigure
-  class Configuration < Struct.new(:strategy, :central)
+  class Configuration < Struct.new(:central)
+    attr_reader :strategies
+
     def initialize(&config)
       self.enhance(&config) if config
+    end
+
+    def strategies=(*strategies)
+      @strategies ||= strategies
     end
 
     ##

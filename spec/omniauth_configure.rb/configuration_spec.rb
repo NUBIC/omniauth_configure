@@ -6,13 +6,13 @@ describe OmniAuthConfigure::Configuration do
     OmniAuthConfigure::Configuration.new(&block)
   end
 
-  let(:config) do 
-    config_from { 
-      central File.expand_path("../test_configuration.yml", __FILE__) 
-    }
-  end
-
   describe '#parameters_for' do
+    let(:config) do 
+      config_from { 
+        central File.expand_path("../test_configuration.yml", __FILE__) 
+      }
+    end
+
     let (:northwestern) do
       config.parameters_for(:patient_tracker, :northwestern) 
     end
@@ -34,5 +34,12 @@ describe OmniAuthConfigure::Configuration do
     it 'aquires the overridden parameters' do
       expect(northwestern[:token_url]).to eq('/override/token')
     end
+  end
+
+  describe '#strategies' do
+    it 'stores strategies' do
+      c = config_from { strategies :northwestern, :facebook, :twitter }
+      expect(c.strategies).to eq([:northwestern, :facebook, :twitter])
+    end 
   end
 end
