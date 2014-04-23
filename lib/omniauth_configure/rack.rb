@@ -6,6 +6,7 @@ module OmniAuthConfigure::Rack
         "Please set one or the other before calling use_in."
     end
 
+    app = effective_configuration.app
     klasses = effective_configuration.strategies
 
     klasses.each do |klass|
@@ -19,9 +20,9 @@ module OmniAuthConfigure::Rack
         end
       end
 
-      p = effective_configuration.parameters_for(:patient_tracker, klass)
-      # args.last.is_a?(Hash) ? args.push(options.merge(args.pop)) : args.push(options)
-      middleware.args [:client_id, :client_secret, :client_options]
+      p = effective_configuration.parameters_for(app, klass)
+
+      middleware.args [:client_id, :client_secret]
 
       cid = p[:client_id]
       cs  = p[:client_secret]
@@ -29,7 +30,13 @@ module OmniAuthConfigure::Rack
       au  = p[:authorize_url]
       tu  = p[:token_url]
 
-      args = [cid, cs, {:site => s, :authorize_url => au, :token_url => tu }, {}]
+      args = [cid, cs]
+      if s || au || tu
+        middleware.args [:client_id, :client_secret, :client_options]
+        args << {:site => s, :authorize_url => au, :token_url => tu }
+      end
+      args << {} # Last argument to provider strategy is empty hash
+
       builder.use middleware, *args, &block
     end
   end

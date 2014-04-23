@@ -15,13 +15,17 @@ describe OmniAuthConfigure::Rack do
 
     it 'adds middleware' do
       OmniAuthConfigure.configure {
+        app :patient_tracker
         strategies :northwestern, :facebook
         central File.expand_path("../test_configuration.yml", __FILE__) 
       }
 
       OmniAuthConfigure::Rack.use_in(builder)
       expect(builder.uses[0].first).to eq(OmniAuth::Strategies::Northwestern)
+      expect(builder.uses[0].first.args).to eq([:client_id, :client_secret, :client_options])
+
       expect(builder.uses[1].first).to eq(OmniAuth::Strategies::Facebook)
+      expect(builder.uses[1].first.args).to eq([:client_id, :client_secret])
     end
   end
 end

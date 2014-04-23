@@ -22,7 +22,6 @@ describe OmniAuthConfigure::Configuration do
 
     it 'aquires the default parameters' do
       expect(northwestern[:site]).to eq('http://northwestern.edu')
-      expect(facebook[:site]).to eq('http://facebook.com')
     end
 
     it 'aquires the parameters' do
