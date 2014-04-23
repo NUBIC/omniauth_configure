@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'omniauth_configure'
 
 describe OmniAuthConfigure::Configuration do
   def config_from(&block)
