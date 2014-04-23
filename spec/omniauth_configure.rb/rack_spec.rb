@@ -15,12 +15,13 @@ describe OmniAuthConfigure::Rack do
 
     it 'adds middleware' do
       OmniAuthConfigure.configure {
-        strategies :northwestern
+        strategies :northwestern, :facebook
         central File.expand_path("../test_configuration.yml", __FILE__) 
       }
 
       OmniAuthConfigure::Rack.use_in(builder)
       expect(builder.uses[0].first).to eq(OmniAuth::Strategies::Northwestern)
+      expect(builder.uses[1].first).to eq(OmniAuth::Strategies::Facebook)
     end
   end
 end
@@ -58,6 +59,9 @@ end
 module OmniAuth
   module Strategies
     class Northwestern
+     include OmniAuth::Strategy
+    end
+    class Facebook
      include OmniAuth::Strategy
     end
   end
