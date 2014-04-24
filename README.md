@@ -11,7 +11,7 @@ source control or the environment for the user running the application server.
 
 1. Add the `omniauth_configure` gem to the Gemfile
 
-## Congiguration
+## Configuration
 
 ```
 # /etc/nubic/omniauth/local.yml
