@@ -59,3 +59,7 @@ OmniAuthConfigure.configure {
   central '/etc/nubic/omniauth/local.yml'
 }
 ```
+
+For Devise configuration see the [Devise wiki page about omniauth](https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview)
+
+
