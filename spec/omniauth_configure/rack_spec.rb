@@ -23,7 +23,7 @@ describe OmniAuthConfigure::Rack do
 
       OmniAuthConfigure::Rack.use_in(builder)
       expect(builder.uses[0].first).to eq(OmniAuth::Strategies::Northwestern)
-      expect(builder.uses[0].first.args).to eq([:client_id, :client_secret, :client_options])
+      expect(builder.uses[0].first.args).to eq([:client_id, :client_options, :client_secret])
 
       expect(builder.uses[1].first).to eq(OmniAuth::Strategies::Facebook)
       expect(builder.uses[1].first.args).to eq([:client_id, :client_secret])

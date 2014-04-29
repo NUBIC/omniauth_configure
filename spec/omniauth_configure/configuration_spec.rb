@@ -22,7 +22,7 @@ describe OmniAuthConfigure::Configuration do
     end
 
     it 'aquires the default parameters' do
-      expect(northwestern[:site]).to eq('http://northwestern.edu')
+      expect(northwestern[:client_options][:site]).to eq('http://northwestern.edu')
     end
 
     it 'aquires the parameters' do
@@ -31,7 +31,7 @@ describe OmniAuthConfigure::Configuration do
     end
 
     it 'aquires the overridden parameters' do
-      expect(northwestern[:token_url]).to eq('/override/token')
+      expect(northwestern[:client_options][:token_url]).to eq('/override/token')
     end
   end
 

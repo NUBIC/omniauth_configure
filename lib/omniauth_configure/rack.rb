@@ -23,19 +23,11 @@ module OmniAuthConfigure::Rack
 
       p = effective_configuration.parameters_for(app, klass)
 
-      middleware.args [:client_id, :client_secret]
+      arg_keys = p.keys.sort
 
-      cid = p[:client_id]
-      cs  = p[:client_secret]
-      s   = p[:site]
-      au  = p[:authorize_url]
-      tu  = p[:token_url]
+      middleware.args arg_keys
 
-      args = [cid, cs]
-      if s || au || tu
-        middleware.args [:client_id, :client_secret, :client_options]
-        args << {:site => s, :authorize_url => au, :token_url => tu }
-      end
+      args = p.values_at(*arg_keys)
       args << {} # Last argument to provider strategy is empty hash
 
       builder.use middleware, *args, &block
