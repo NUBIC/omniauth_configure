@@ -1,4 +1,4 @@
-# OmnAuth Configure
+# OmniAuth Configure
 
 Centralize OmniAuth strategy configurations on the server. This has a couple 
 advantages over storing configuration details (e.g. client secret and urls) in 
