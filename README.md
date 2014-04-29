@@ -25,7 +25,7 @@ nucats_assist:
   nucats_membership:
     client_id: abc123
     client_secret: def456
-  facebok:
+  facebook:
     client_id: asdf213
     client_secret: jimbo
 nitro:
