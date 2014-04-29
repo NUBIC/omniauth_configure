@@ -13,14 +13,22 @@ source control or the environment for the user running the application server.
 
 ## Configuration
 
+A configuration contains details about applications and strategies which
+use omniauth. Applications are top level keys (e.g. nucats_assist, nitro) 
+with the exception of the 'defaults'. The 'defaults' top level key is used to 
+keep global options for strategies. When a strategy is configured on a per  
+application level, the default options for that strategy are inherited first
+and the application specific strategy options are applied on top of them.
+
 ```
 # /etc/nubic/omniauth/local.yml
 
 defaults:
   nucats_membership:
-    site: http://membership-staging.nubic.northwestern.edu
-    authorize_url: /auth
-    token_url: /token
+    client_options:
+      site: http://membership-staging.nubic.northwestern.edu
+      authorize_url: /auth
+      token_url: /token
 nucats_assist:
   nucats_membership:
     client_id: abc123
@@ -31,7 +39,7 @@ nucats_assist:
 nitro:
   nucats_membership:
     client_id: xyz987
-    client_secret:ufw654
+    client_secret: ufw654
 ```
 
 ## Rack
@@ -40,7 +48,7 @@ nitro:
 # server.ru
 
 OmniauthConfigure.configure {
-  app :example
+  app :nucats_assist
   strategies :nucats_membership
   central '/etc/nubic/omniauth/local.yml'
 }
@@ -54,7 +62,7 @@ OmniauthConfigure::Rack.use_in(self)
 # config/environments/development.rb
 
 OmniAuthConfigure.configure {
-  app :example
+  app :nucats_assist
   strategies :nucats_membership
   central '/etc/nubic/omniauth/local.yml'
 }

@@ -1,13 +1,15 @@
 defaults:
   northwestern:
-    site: http://northwestern.edu
-    authorize_url: /oauth/auth
-    token_url: /oauth/token
+    client_options:
+      site: http://northwestern.edu
+      authorize_url: /oauth/auth
+      token_url: /oauth/token
 patient_tracker:
   northwestern:
     client_id: c1980
     client_secret: kareem
-    token_url: /override/token
+    client_options:
+      token_url: /override/token
   facebook:
     client_id: c1995
     client_secret: seagal

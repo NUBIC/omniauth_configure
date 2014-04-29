@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 require 'yaml'
+require 'active_support'
 
 module OmniAuthConfigure
   class CentralParameters
@@ -23,9 +24,9 @@ module OmniAuthConfigure
       unless entries.key?(app)
         entries[app] = {}
         entries[app][provider] = 
-            {}.merge((raw_values[:default] || {})[provider] || {}).
-            merge((raw_values[:defaults] || {})[provider] || {}).
-            merge((raw_values[app] || {})[provider] || {})
+            {}.deep_merge((raw_values[:default] || {})[provider] || {}).
+            deep_merge((raw_values[:defaults] || {})[provider] || {}).
+            deep_merge((raw_values[app] || {})[provider] || {})
       end
       entries[app][provider]
     end
