@@ -10,8 +10,8 @@ describe OmniAuthConfigure::Rack do
         builder.reset!
         OmniAuthConfigure.configuration = nil
 
-        lambda { OmniAuthConfigure::Rack.use_in(builder) }.
-          should raise_error(/Please set one or the other before calling use_in./)
+        expect{ OmniAuthConfigure::Rack.use_in(builder) }.
+          to raise_error(/Please set one or the other before calling use_in./)
       end
 
     it 'adds middleware' do

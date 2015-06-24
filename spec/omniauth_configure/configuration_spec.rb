@@ -37,8 +37,8 @@ describe OmniAuthConfigure::Configuration do
 
   describe '#strategies' do
     it 'stores strategies' do
-      c = config_from { strategies :northwestern, :facebook, :twitter }
-      expect(c.strategies).to eq([:northwestern, :facebook, :twitter])
+      c = config_from { strategies :nucats_accounts, :facebook, :twitter }
+      expect(c.strategies).to eq([:nucats_accounts, :facebook, :twitter])
     end 
   end
 end
